@@ -52,10 +52,4 @@ By completing this course, I aim to:
 
 Follow this repository for updates as I progress through the course. Let’s unlock the potential of Go together!
 
-Citations:
-[1] https://everhour.com/blog/github-readme-template/
-[2] https://dev.to/sumonta056/github-readme-template-for-personal-projects-3lka
-[3] https://www.youtube.com/watch?v=rCt9DatF63I
-[4] https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide/
-[5] https://github.com/othneildrew/Best-README-Template
-[6] https://github.com/michael-duke/professional-readme-template
+
