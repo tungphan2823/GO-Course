@@ -3,7 +3,14 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
+
+func readDataFromFile() float64 {
+	data, _ := os.ReadFile("balance.txt")
+	balance, _ := strconv.ParseFloat(string(data), 64)
+	return balance
+}
 
 func writeDataToFile(balance float64) {
 	balanceText := fmt.Sprint(balance)
@@ -11,7 +18,7 @@ func writeDataToFile(balance float64) {
 }
 func main() {
 
-	var balance = 10000
+	var balance = readDataFromFile()
 	fmt.Println("Welcome to TP bank.")
 
 	for {
@@ -33,7 +40,7 @@ func main() {
 			fmt.Println("Your balance: ")
 			fmt.Println(balance)
 		case 2:
-			var deposit int
+			var deposit float64
 			fmt.Println("Enter amount to deposit: ")
 			fmt.Scan(&deposit)
 			if deposit < 0 {
@@ -43,7 +50,7 @@ func main() {
 			balance += deposit
 			writeDataToFile(float64(balance))
 		case 3:
-			var withdraw int
+			var withdraw float64
 			fmt.Println("Enter amount to withdraw: ")
 			fmt.Scan(&withdraw)
 			if withdraw > balance {
