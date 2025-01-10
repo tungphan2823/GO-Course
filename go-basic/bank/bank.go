@@ -1,32 +1,16 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"os"
-	"strconv"
+
+	"example.com/bank/fileops"
 )
 
-func readDataFromFile() (float64, error) {
-	data, err := os.ReadFile("balance.txt")
+const textFile = "balance.txt"
 
-	if err != nil {
-		return 1000, errors.New("failed to read balance")
-	}
-	balance, err := strconv.ParseFloat(string(data), 64)
-	if err != nil {
-		return 1000, errors.New("failed to read balance")
-	}
-	return balance, nil
-}
-
-func writeDataToFile(balance float64) {
-	balanceText := fmt.Sprint(balance)
-	os.WriteFile("balance.txt", []byte(balanceText), 0644)
-}
 func main() {
 
-	var balance, err = readDataFromFile()
+	var balance, err = fileops.ReadDataFromFile(textFile)
 	if err != nil {
 		fmt.Printf("ERROR")
 		fmt.Println(err)
@@ -35,12 +19,7 @@ func main() {
 	fmt.Println("Welcome to TP bank.")
 
 	for {
-		fmt.Println("What do you want ?")
-
-		fmt.Println("1. Check balance.")
-		fmt.Println("2. Deposit money.")
-		fmt.Println("3. Withdraw money.")
-		fmt.Println("4. Exit.")
+		presentOptions()
 
 		var choice int
 		fmt.Println("Your choice: ")
@@ -61,7 +40,7 @@ func main() {
 				continue
 			}
 			balance += deposit
-			writeDataToFile(float64(balance))
+			fileops.WriteDataToFile(float64(balance), textFile)
 		case 3:
 			var withdraw float64
 			fmt.Println("Enter amount to withdraw: ")
@@ -71,7 +50,7 @@ func main() {
 				continue
 			} else {
 				balance -= withdraw
-				writeDataToFile(float64(balance))
+				fileops.WriteDataToFile(float64(balance), textFile)
 			}
 		default:
 			fmt.Println("Thank you for using TP bank.")
