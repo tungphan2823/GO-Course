@@ -23,11 +23,17 @@ func main() {
 		return
 	}
 	note.Display()
+	err = note.Save()
+	if err != nil {
+		fmt.Println("Error saving note:", err)
+		return
+	}
 
 }
+
 func getUserInput(prompt string) string {
 
-	fmt.Print(prompt)
+	fmt.Printf("%v ", prompt)
 	reader := bufio.NewReader(os.Stdin)
 	text, err := reader.ReadString('\n')
 
@@ -35,7 +41,7 @@ func getUserInput(prompt string) string {
 		return ""
 	}
 
-	text = strings.TrimSuffix(text, "/n")
-	text = strings.TrimSuffix(text, "/r")
+	text = strings.TrimSuffix(text, "\n")
+	text = strings.TrimSuffix(text, "\r")
 	return text
 }
