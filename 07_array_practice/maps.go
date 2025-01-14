@@ -9,4 +9,9 @@ func main() {
 	}
 	fmt.Println(website)
 	fmt.Println(website["golang.org"])
+
+	for key, value := range website {
+		fmt.Println(key)
+		fmt.Println(value)
+	}
 }
